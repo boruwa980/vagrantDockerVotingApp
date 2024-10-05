@@ -12,12 +12,12 @@ else
     exit 1
 fi
 
-echo "Building Docker image..."
-vagrant ssh -c "cd /home/vagrant && docker build -t finaldevops5-web ."
+# echo "Building Docker image..."
+# vagrant ssh -c "cd /home/vagrant && docker build -t finaldevops5-web ."
 
-if [ $? -ne 0 ]; then
-    echo "ERROR: Docker build failed!"
-fi
+# if [ $? -ne 0 ]; then
+#    echo "ERROR: Docker build failed!"
+# fi
 
 
 echo "Starting Docker and Docker-compose inside of VM"
