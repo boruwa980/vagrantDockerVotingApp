@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS voting_app;
+
+USE voting_app;
+
+CREATE TABLE IF NOT EXISTS votes (
+    option_name VARCHAR(255) NOT NULL UNIQUE,
+    count INT DEFAULT 0
+);

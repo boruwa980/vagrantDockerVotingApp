@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  web:
+    build: . # Build Docker image from this directory
+    ports:
+      - "80:80" # Map host's port 80 to port 80 of the container
+    volumes:
+      - ./src:/var/www/html # Mount this src dir to container's web root
+    depends_on:
+      - db # What MUST start before web
+    environment:
+      - DB_HOST=db 
+      - DB_NAME=voting_app
+      - DB_USER=root
+      - DB_PASSWORD=password
+
+  db: # Database service
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: voting_app
+    volumes:
+      - db_data:/var/lib/mysql # persist MySQL data in this dir
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql # init the database
+    ports:
+      - "3306:3306" 
+
+volumes:
+  db_data: {} # Define a named volume for persisting database
